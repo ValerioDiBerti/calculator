@@ -11,7 +11,7 @@ function divide(a, b) {
     return a / b;
 }
 function display(a) {
-    screen.innerText = +parseFloat((+a).toPrecision(14)).toString();
+    screen.innerText = +parseFloat((+a).toPrecision(10)).toString();
 }
 
 let firstNumber;
@@ -74,7 +74,7 @@ operations.forEach(a => {
         } else {
             firstNumber = +displayValue;
         }
-        
+
         displayValue = '';
         operation = a.id;
 
@@ -87,7 +87,7 @@ equal.addEventListener('click', () => {
     displayValue = operate(firstNumber, secondNumber, operation).toString();
     display(displayValue)
     operation = '';
-    
+
     result = true;
 })
 
