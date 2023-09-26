@@ -71,6 +71,7 @@ const clear = document.querySelector('#clear');
 clear.addEventListener('click', () => {
     displayValue = '';
     operation = '';
+    result = false;
     display(0);
 })
 
@@ -108,7 +109,11 @@ sign.addEventListener('click', () => {
     } else {
         displayValue = '-' + displayValue;
     }
-    display(displayValue);
+    if (displayValue == '-') {
+        displayString(displayValue);
+    } else {
+        display(displayValue);
+    }
 })
 
 const percent = document.querySelector('#percent');
