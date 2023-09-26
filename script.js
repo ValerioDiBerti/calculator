@@ -1,3 +1,11 @@
+
+let firstNumber;
+let secondNumber;
+let operation;
+let result;
+let displayValue = '';
+
+
 function add(a, b) {
     return a + b;
 }
@@ -10,16 +18,13 @@ function multiply(a, b) {
 function divide(a, b) {
     return a / b;
 }
+
 function display(a) {
     screen.innerText = +parseFloat((+a).toPrecision(10)).toString();
 }
-
-let firstNumber;
-let secondNumber;
-let operation;
-let result;
-
-let displayValue = '';
+function displayString(string) {
+    screen.innerText = string
+}
 
 function operate(a, b, operation) {
     switch (operation) {
@@ -52,8 +57,13 @@ numbers.forEach(number => {
 
 const point = document.querySelector('#point');
 point.addEventListener('click', () => {
-    if (!displayValue.includes('.')) {
+    if (!displayValue.includes('.') || result) {
+        if (result || displayValue === '') {
+            result = false;
+            displayValue = '0'
+        }
         displayValue += '.';
+        displayString(displayValue);
     }
 })
 
@@ -91,7 +101,6 @@ equal.addEventListener('click', () => {
     result = true;
 })
 
-
 const sign = document.querySelector('#sign');
 sign.addEventListener('click', () => {
     if (displayValue.includes('-')) {
@@ -106,4 +115,35 @@ const percent = document.querySelector('#percent');
 percent.addEventListener('click', () => {
     displayValue = multiply(+displayValue, 0.01).toString();
     display(displayValue);
+    result = true;
 })
+
+const squared = document.querySelector('#squared');
+squared.addEventListener('click', () => {
+    displayValue = multiply(+displayValue, +displayValue).toString();
+    display(displayValue);
+    result = true;
+})
+
+const squareRoot = document.querySelector('#square-root');
+squareRoot.addEventListener('click', () => {
+    displayValue = Math.sqrt(+displayValue).toString();
+    display(displayValue);
+    result = true;
+})
+
+const reciprocal = document.querySelector('#reciprocal');
+reciprocal.addEventListener('click', () => {
+    displayValue = divide(1, +displayValue).toString();
+    display(displayValue);
+    result = true;
+})
+
+const backspace = document.querySelector('#backspace');
+backspace.addEventListener('click', () => {
+    if (!result) {
+        displayValue = displayValue.slice(0, -1);
+        display(displayValue);
+    }
+})
+
